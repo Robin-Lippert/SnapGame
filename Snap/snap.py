@@ -25,12 +25,23 @@ deck.shuffle()
 
 playPile = PlayDeck()
 
-getPlayerNames(getNumberOfPlayers())
+#getPlayerNames(getNumberOfPlayers())
 
-deck.deal(players)
+#deck.deal(players)
 
-while True:
+pygame.init()
+screen = pygame.display.set_mode((480, 720))
+clock = pygame.time.Clock()
+running = True
 
+while running:
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill("purple")
+    '''
     for player in players:
         if  len(player.cards) == 0 and len(playPile.cards) == 0:
             players.remove(player)
@@ -54,6 +65,9 @@ while True:
             for player in players:
                 print(f"{player.name} has {len(player.cards)} cards\n")
             print(f"{len(playPile.cards)} are in the pile")
+    '''
+    pygame.display.flip()
+    clock.tick(60)
     
 
 

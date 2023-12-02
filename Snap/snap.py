@@ -3,11 +3,13 @@ from extraClasses import (Player, PlayDeck)
 import pygame
 import random
 
+random.seed(random.SystemRandom().random())
+
 players = []
 
 def getNumberOfPlayers():
     try:
-        numberOfPlayers = int(input("How many players?"))
+        numberOfPlayers = int(input("How many players? "))
     except:
         print("please use a whole number")
         numberOfPlayers = getNumberOfPlayers()
@@ -15,7 +17,7 @@ def getNumberOfPlayers():
 
 def getPlayerNames(numberOfPlayers):
     for player in range(numberOfPlayers):
-        players.append(Player(input(f"What is player {player + 1}s Name?")))
+        players.append(Player(input(f"What is player {player + 1}s Name? ")))
 
 deck = DeckOfCards()
 
@@ -44,12 +46,14 @@ while True:
         #playPile.cards[-2].__str__()
         if playPile.topCardsSame:
             print(players)
+            random.seed(random.SystemRandom().random())
             randomPlayer = random.choice(players)
-            print(f"{len(playPile.cards)} are in the pile")
+            
             playPile.deal([randomPlayer])
             print(f"{randomPlayer.name} wins this round\n")
             for player in players:
                 print(f"{player.name} has {len(player.cards)} cards\n")
+            print(f"{len(playPile.cards)} are in the pile")
     
 
 
@@ -58,3 +62,5 @@ while True:
 
 for player in players:
     print(f"{player.name} has {len(player.cards)} cards")
+
+print(players[0].name, "wins")

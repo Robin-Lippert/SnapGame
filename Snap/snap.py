@@ -2,6 +2,7 @@ from deckOfCards import DeckOfCards
 from extraClasses import (Player, PlayDeck)
 import pygame
 import random
+import sys
 
 random.seed(random.SystemRandom().random())
 
@@ -30,17 +31,39 @@ playPile = PlayDeck()
 #deck.deal(players)
 
 pygame.init()
-screen = pygame.display.set_mode((480, 720))
+screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
+base_font = pygame.font.Font(None,32)
+user_text = ''
+
+input_rect = pygame.Rect(200,200,140,32)
+color_active = pygame.Color('darkblue')
+color_pasive = pygame.Color('grey15')
+color = color_pasive
 running = True
 
 while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                user_text= user_text[:-1]
+            else:
+                user_text += event.unicode
+    
 
     screen.fill("purple")
+
+    pygame.draw.rect(screen,color,input_rect,2)
+
+    text_surface = base_font.render(user_text,True,(0,0,0))
+    screen.blit(text_surface,(input_rect.x + 5,input_rect.y + 5 ))
+
+    input_rect.w =max(100,text_surface.get_width() + 10) 
     '''
     for player in players:
         if  len(player.cards) == 0 and len(playPile.cards) == 0:

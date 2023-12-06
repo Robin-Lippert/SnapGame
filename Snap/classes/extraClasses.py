@@ -1,4 +1,4 @@
-from deckOfCards import *
+from classes.deckOfCards import *
 
 
 

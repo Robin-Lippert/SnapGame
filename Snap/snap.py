@@ -1,9 +1,9 @@
-from deckOfCards import DeckOfCards
-from extraClasses import (Player, PlayDeck)
+from classes.deckOfCards import DeckOfCards
+from classes.extraClasses import (Player, PlayDeck)
 import pygame
 import random
 import sys
-from inputBox import InputBox , PlayerButton
+from classes.inputBox import InputBox , PlayerButton
 import time
  
 random.seed(random.SystemRandom().random())

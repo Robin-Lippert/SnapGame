@@ -4,9 +4,9 @@ from deckOfCards import *
 
 class Player(DeckOfCards):
     
-    def __init__(self, name):
+    def __init__(self):
         self.cards = []
-        self.name = name
+        self.name = ""
         
         
 
